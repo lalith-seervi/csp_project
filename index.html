@@ -1,1 +1,118 @@
-Hello.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSP Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎨 CSP Visualizer</h1>
+      <p class="subtitle">Interactive Constraint Satisfaction Problem Solver</p>
+    </header>
+
+    <div class="main-content">
+      <!-- Control Panel -->
+      <aside class="control-panel">
+        <section class="section">
+          <h3>Problem Type</h3>
+          <select id="problemType" class="input-field">
+            <option value="map">Map Coloring</option>
+            <option value="nqueens">N-Queens</option>
+            <option value="custom">Custom Map</option>
+          </select>
+        </section>
+
+        <!-- Map Coloring Options -->
+        <section class="section" id="mapOptions">
+          <h3>Map Selection</h3>
+          <select id="mapSelect" class="input-field">
+            <option value="australia">Australia</option>
+            <option value="usa">USA (Simple 6-node)</option>
+            <option value="europe">Mini Europe</option>
+          </select>
+        </section>
+
+        <!-- N-Queens Options -->
+        <section class="section hidden" id="queensOptions">
+          <h3>Board Size</h3>
+          <div class="slider-container">
+            <input type="range" id="queensSize" min="4" max="12" value="4" class="slider">
+            <span id="queensValue" class="slider-value">4</span>
+          </div>
+        </section>
+
+        <!-- Custom Map Builder -->
+        <section class="section hidden" id="customMapOptions">
+          <h3>Map Builder</h3>
+          <div class="map-builder-info">
+            <p class="info-text">Click to add nodes. Click two nodes to connect them.</p>
+          </div>
+          <button id="clearCanvas" class="btn btn-secondary">Clear Canvas</button>
+        </section>
+
+        <section class="section">
+          <h3>Domain / Colors</h3>
+          <input type="text" id="domainInput" class="input-field" value="Red,Green,Blue,Yellow" placeholder="Comma-separated values">
+        </section>
+
+        <section class="section">
+          <h3>Algorithm</h3>
+          <select id="algorithmSelect" class="input-field">
+            <option value="node">Node Consistency</option>
+            <option value="edge">Edge Consistency</option>
+            <option value="ac3">Arc Consistency (AC-3)</option>
+            <option value="backtrack">Backtracking</option>
+            <option value="backtrack_ac3">Backtracking + AC-3</option>
+          </select>
+        </section>
+
+        <section class="section controls">
+          <button id="resetBtn" class="btn btn-secondary">Reset</button>
+          <button id="stepBtn" class="btn btn-primary">Step</button>
+          <button id="runBtn" class="btn btn-success">Run</button>
+          <button id="stopBtn" class="btn btn-danger">Stop</button>
+        </section>
+
+        <section class="section">
+          <h3>Speed</h3>
+          <div class="slider-container">
+            <input type="range" id="speedSlider" min="50" max="1500" value="400" class="slider">
+            <span id="speedValue" class="slider-value">400ms</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="status-box">
+            <span class="status-label">Status:</span>
+            <span id="statusText" class="status-text">Ready</span>
+          </div>
+        </section>
+
+        <!-- Solution Display -->
+        <section class="section hidden" id="solutionSection">
+          <h3>Solution</h3>
+          <div id="solutionDisplay" class="solution-display"></div>
+        </section>
+      </aside>
+
+      <!-- Visualization Area -->
+      <main class="visualization-area">
+        <div class="canvas-container">
+          <svg id="canvas" viewBox="0 0 800 600"></svg>
+        </div>
+        
+        <!-- Log Panel -->
+        <div class="log-panel">
+          <h4>Activity Log</h4>
+          <div id="logContent" class="log-content"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
